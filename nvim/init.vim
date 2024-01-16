@@ -22,14 +22,6 @@ let g:startify_bookmarks = [
 	      \ '~/.config/nvim/init.vim',
 	      \ ]
 
-Plug 'nvim-tree/nvim-web-devicons'
-
-" FZF!
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'
-Plug 'ibhagwan/fzf-lua'
-autocmd VimEnter * FzfLua setup_fzfvim_cmds
-
 " Status Bar
 Plug 'itchyny/lightline.vim'
 set noshowmode
@@ -63,6 +55,21 @@ set guioptions-=e  " Don't use GUI tabline
 
 " noremap <1><C-\><C-n>:1gt<cr>
 
+Plug 'nvim-tree/nvim-web-devicons'
+
+" FZF!
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
+Plug 'ibhagwan/fzf-lua'
+autocmd VimEnter * FzfLua setup_fzfvim_cmds
+
+Plug 'dense-analysis/ale'
+
+let g:ale_linters = { 'c': ['cppcheck', 'flawfinder'], }
+
+let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'] }
+let g:ale_fix_on_save = 1
+
 " Comments
 Plug 'tpope/vim-commentary'
 
@@ -95,10 +102,6 @@ nnoremap <F4> :LeadingSpaceToggle<CR>
 
 Plug 'rhysd/git-messenger.vim'
 
-" Spell Checking
-" Need to install cppcheck and other https://github.com/neomake/neomake/wiki/Makers
-Plug 'neomake/neomake'
-
 " Tig plugin
 Plug 'iberianpig/tig-explorer.vim'
 
@@ -115,9 +118,6 @@ Plug 'gkapfham/vim-vitamin-onec'
 Plug 'EdenEast/nightfox.nvim'
 
 call plug#end()
-
-autocmd VimEnter * call neomake#configure#automake('nrwi', 500)
-call neomake#configure#automake('nrwi', 500)
 
 lua require("cscope_maps").setup({cscope = {picker = "fzf-lua", skip_picker_for_single_result = true}})
 
